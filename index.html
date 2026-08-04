@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>RPG Entrance</title>
+
+<link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body>
+
+<div class="game-screen" tabindex=0>
+    
+    <div class="background"></div>
+    
+    <div class="command-window">
+        
+        <div id="startMessage">
+    
+    <div class="start-text">
+        ようこそ。
+    </div>
+    
+    <div class="start-item">
+        <span class="cursor">▶</span>
+        <span class="label">なんか決めてないけど文章</span>
+    </div>
+    
+</div>
+        
+        <div id="pageContent"></div>
+        
+        <ul class="menu" id="mainMenu">
+            
+            <li data-page="try">
+                やってみる(熱量)
+            </li>
+            
+            <li data-page="things">
+                もの
+            </li>
+            
+            <li data-page="others">
+                もの以外
+            </li>
+            
+            <li data-page="introduction">
+                紹介
+            </li>
+            
+        </ul>
+        
+    </div>
+    
+</div>
+
+<script src="js/main.js"></script>
+
+</body>
+</html>
