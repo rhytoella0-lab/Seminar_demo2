@@ -1,0 +1,488 @@
+/* 全体 */
+
+* {
+  box-sizing: border-box;
+}
+
+
+body {
+  
+  margin: 0;
+  
+  background: #000;
+  
+  overflow: hidden;
+  
+  font-family:
+    "PixelMplus10",
+    "ＭＳ ゴシック",
+    monospace;
+  
+}
+
+
+
+/* ゲーム画面 */
+.game-screen {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  
+  padding-bottom: 20px;
+  
+  outline: none;
+}
+
+/* 背景 */
+
+.background {
+  
+  position: absolute;
+  
+  width: 100%;
+  height: 100%;
+  
+  background-image: url("../images/background.png");
+  
+  background-size: cover;
+  
+  background-position: center;
+  
+}
+
+
+
+/* コマンドウィンドウ */
+.command-window {
+  
+  position: relative;
+  
+  z-index: 2;
+  
+  width: 90%;
+  
+  max-width: 900px;
+  
+  margin-bottom: clamp(20px, 12vh, 60px);
+
+  background:#000;
+
+
+  padding:40px 50px;
+
+
+  color:white;
+
+
+  image-rendering:pixelated;
+
+
+  /* 枠分の余白 */
+  isolation:isolate;
+
+
+}
+
+
+
+/* =====================
+   外側ドット枠
+===================== */
+
+
+.command-window::before {
+
+
+  content:"";
+
+
+  position:absolute;
+
+
+  inset:0;
+
+
+  background:white;
+
+
+  z-index:-1;
+
+
+
+  clip-path:polygon(
+
+    24px 0,
+    calc(100% - 24px) 0,
+
+
+    calc(100% - 24px) 8px,
+    calc(100% - 16px) 8px,
+    calc(100% - 16px) 16px,
+    100% 16px,
+
+
+    100% calc(100% - 16px),
+    calc(100% - 16px) calc(100% - 16px),
+    calc(100% - 16px) calc(100% - 8px),
+    calc(100% - 24px) calc(100% - 8px),
+
+
+    calc(100% - 24px) 100%,
+
+
+    24px 100%,
+
+
+    24px calc(100% - 8px),
+    16px calc(100% - 8px),
+    16px calc(100% - 16px),
+    0 calc(100% - 16px),
+
+
+    0 16px,
+
+    16px 16px,
+
+    16px 8px,
+
+    24px 8px
+
+  );
+
+
+}
+
+
+
+/* =====================
+   内側黒部分
+===================== */
+
+
+.command-window::after {
+
+
+  content:"";
+
+
+  position:absolute;
+
+
+  inset:8px;
+
+
+  background:#000;
+
+
+  z-index:-1;
+
+
+
+  clip-path:polygon(
+
+    16px 0,
+    calc(100% - 16px) 0,
+
+
+    calc(100% - 16px) 8px,
+    calc(100% - 8px) 8px,
+    calc(100% - 8px) 16px,
+    100% 16px,
+
+
+    100% calc(100% - 16px),
+    calc(100% - 8px) calc(100% - 16px),
+    calc(100% - 8px) calc(100% - 8px),
+    calc(100% - 16px) calc(100% - 8px),
+
+
+    calc(100% - 16px) 100%,
+
+
+    16px 100%,
+
+
+    16px calc(100% - 8px),
+    8px calc(100% - 8px),
+    8px calc(100% - 16px),
+    0 calc(100% - 16px),
+
+
+    0 16px,
+
+    8px 16px,
+
+    8px 8px,
+
+    16px 8px
+
+  );
+
+
+}
+
+/* 外側ドット枠 */
+
+/* ドット角 */
+
+/* メニュー */
+.menu {
+  
+  list-style: none;
+  
+  padding: 0;
+  
+  margin: 0;
+  
+  color: white;
+  
+  font-size: clamp(22px, 3.2vw, 34px);
+  
+  line-height: 1.8;
+  
+  
+  /* 最初は完全非表示 */
+  opacity: 0;
+  
+}
+
+
+
+/* 選択肢 */
+
+.menu li {
+  
+  cursor: pointer;
+  
+  position: relative;
+  
+  padding-left: 45px;
+  
+  transition: transform 0.1s;
+  
+  touch-action: none;
+  
+}
+
+/* カーソル */
+
+.menu li::before {
+  
+  
+  content: "▶";
+  
+  
+  position: absolute;
+  
+  
+  left: 0;
+  
+  
+  opacity: 0;
+  
+  
+}
+
+
+
+/* 選択中 */
+
+.menu li.selected::before {
+  
+  opacity: 1;
+  
+  animation: cursorBlink 0.8s infinite;
+  
+}
+
+
+@keyframes cursorBlink {
+  
+  0% {
+    opacity: 1;
+  }
+  
+  50% {
+    opacity: 0.2;
+  }
+  
+  100% {
+    opacity: 1;
+  }
+  
+}
+
+
+
+/* ホバー */
+
+.menu li:hover {
+  color: #ffff80;
+}
+
+.menu li.selected {
+  color: #ffff80;
+}
+
+
+/* スマホ調整 */
+
+@media(max-width:600px) {
+  
+  .menu li {
+    
+    padding-left: 35px;
+    
+  }
+  
+}
+/* 決定時の押し込み演出 */
+
+.menu li.pressed {
+
+  transform: scale(0.9) translateX(5px);
+
+  transform-origin: left center;
+
+}
+/* 最初はメニューを隠す */
+
+/* 最初はメニューを見えなくする */
+
+#mainMenu {
+
+  opacity: 0;
+
+  pointer-events: none;
+
+  transition: opacity 0.8s;
+
+}
+
+
+/* 表示するとき */
+
+#mainMenu.show {
+
+  opacity: 1;
+
+  pointer-events: auto;
+
+}
+
+/* スタートメッセージ */
+
+#startMessage {
+
+  color: white;
+
+  font-size: clamp(22px, 3.2vw, 34px);
+
+  line-height: 1.8;
+
+  cursor: pointer;
+
+}
+/* =====================
+   スタート文字
+===================== */
+
+.start-button {
+  
+  color: white;
+  
+  cursor: pointer;
+  
+  transition: 0.1s;
+  
+}
+
+
+
+/* マウスを乗せた時 */
+
+.start-button:hover {
+  
+  color: #ffff80;
+  
+}
+
+
+
+/* 押した瞬間 */
+
+.start-button.pressed {
+  
+  transform: scale(0.85);
+  
+  color: #ffff80;
+  
+}
+/* =====================
+   スタート項目
+===================== */
+
+.start-item {
+  
+  color: white;
+  
+  cursor: pointer;
+  
+  font-size: clamp(22px, 3.2vw, 34px);
+  
+  display: flex;
+  
+  align-items: center;
+  
+  gap: 12px;
+  
+}
+
+.start-item:hover {
+  
+  color: #ffff80;
+  
+}
+
+.cursor {
+  
+  animation: cursorBlink .8s infinite;
+  
+}
+
+.start-item.pressed {
+  
+  color: #ffff80;
+  
+}
+
+.start-item.pressed .label {
+  
+  transform: scale(.9);
+  
+}
+
+.label {
+  
+  display: inline-block;
+  
+  transition: transform .1s;
+  
+}
+/*
+#pageContent {
+  
+  width: 100%;
+  
+  min-height: 250px;
+  
+}
+*/
+#pageContent.active {
+  
+  min-height: 250px;
+  
+}
