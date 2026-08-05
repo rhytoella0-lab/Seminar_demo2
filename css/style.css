@@ -4,7 +4,6 @@
   box-sizing: border-box;
 }
 
-
 body {
   
   margin: 0;
@@ -25,7 +24,7 @@ body {
 /* ゲーム画面 */
 .game-screen {
   width: 100vw;
-  height: 100vh;
+  height: 100dvh;
   position: relative;
   display: flex;
   justify-content: center;
