@@ -46,24 +46,24 @@ bgmGain.gain.value = 0;
 
 
 // 端末によるBGM音量調整
-let bgmMaxVolume = 0.05;
+let bgmMaxVolume = 0.07;
 
 if (/iPhone|iPod/.test(navigator.userAgent)) {
   
-  bgmMaxVolume = 0.03;
+  bgmMaxVolume = 0.07;
   
 }
 // =====================
 // SE読み込み
 // =====================
 const selectSE = new Audio("./sounds/decision.mp3");
-selectSE.volume = 0.7;
+selectSE.volume = 0.5;
 
 const textSE = new Audio("./sounds/text.mp3");
 textSE.volume = 0.7;
 
 const moveSE = new Audio("./sounds/text.mp3");
-moveSE.volume = 0.7;
+moveSE.volume = 0.3;
 
 const textLoopSE = new Audio("./sounds/text_loop.mp3");
 
@@ -241,6 +241,24 @@ menuItems.forEach((item, index) => {
   
 });
 
+menu.addEventListener("pointermove", (event) => {
+  
+  const target = document.elementFromPoint(
+    event.clientX,
+    event.clientY
+  );
+  
+  const item = target.closest(".menu li");
+  
+  if (!item) {
+    return;
+  }
+  
+  const index = Array.from(menuItems).indexOf(item);
+  
+  changeCursor(index);
+  
+});
 
 function selectItem(index) {
   
@@ -450,7 +468,7 @@ function openPage(page) {
   
   gameState = "page";
 
-  console.log("openPage実行", page);
+  console.log("openPage実行", page)
 
   
   mainMenu.style.display = "none";
@@ -539,7 +557,7 @@ startMessage.addEventListener("click", () => {
   }, 300);
   
   
-  startMessage.style.display = "none";
+  startMessage.classList.add("hidden");
   
   mainMenu.classList.add("show");
   
