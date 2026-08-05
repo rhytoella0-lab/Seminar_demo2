@@ -243,14 +243,11 @@ body {
   
   line-height: 1.8;
   
-  
-  /* 最初は完全非表示 */
   opacity: 0;
   
+  display: none;
+  
 }
-
-
-
 /* 選択肢 */
 
 .menu li {
@@ -319,10 +316,10 @@ body {
 
 /* ホバー */
 
-.menu li:hover {
+/*.menu li:hover {
   color: #ffff80;
 }
-
+*/
 .menu li.selected {
   color: #ffff80;
 }
@@ -366,14 +363,14 @@ body {
 /* 表示するとき */
 
 #mainMenu.show {
-
+  
   opacity: 1;
-
+  
   pointer-events: auto;
-
-}
-
-/* スタートメッセージ */
+  
+  display: block;
+  
+}/* スタートメッセージ */
 
 #startMessage {
 
@@ -485,4 +482,7 @@ body {
   
   min-height: 250px;
   
+}
+.hidden {
+  display: none;
 }
