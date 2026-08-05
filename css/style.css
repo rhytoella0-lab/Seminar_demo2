@@ -479,7 +479,7 @@ body {
 */
 #pageContent.active {
   
-  min-height: 250px;
+  min-height: 200px;
   
 }
 .hidden {
